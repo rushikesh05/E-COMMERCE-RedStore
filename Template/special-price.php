@@ -1,127 +1,41 @@
 <!-- Special Price -->
+<?php
+$brand = array_map(function ($pro){ return $pro['item_brand']; }, $product_shuffle);
+$unique = array_unique($brand);
+sort($unique);
+shuffle($product_shuffle);
+
+// request method post
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+    if (isset($_POST['special_price_submit'])){
+        // call method addToCart
+        $Cart->addToCart($_POST['user_id'], $_POST['item_id']);
+    }
+}
+
+$in_cart = $Cart->getCartId($product->getData('cart'));
+
+?>
 <section id="special-price">
     <div class="container">
         <h4 class="font-rubik font-size-20">Special Price</h4>
         <div id="filters" class="button-group text-right font-baloo font-size-16">
-            <button class="btn is-checked" data-filter="*">All Category</button>
-            <button class="btn" data-filter=".Phone">Phones</button>
-            <button class="btn" data-filter=".DMS">Digital Marketing Service</button>
-            <button class="btn" data-filter=".Car">Car</button>
+            <button class="btn is-checked" data-filter="*">All Brand</button>
+            <?php
+            array_map(function ($brand){
+                printf('<button class="btn" data-filter=".%s">%s</button>', $brand, $brand);
+            }, $unique);
+            ?>
         </div>
 
         <div class="grid">
-            <div class="grid-item Phone border">
-                <div class="item py-2" style="width: 200px;">
-                    <div class="product font-lato">
-                        <a href="#"><img src="./assets//products/13.png" alt="product1" class="img-fluid"></a>
-                        <div class="text-center">
-                            <h6>Apple iPhone 11</h6>
-                            <div class="rating text-warning font-size-12">
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="far fa-star"></i></span>
-                            </div>
-                            <div class="price py-2">
-                                <span>₹72000</span>
-                            </div>
-                            <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item Phone border">
-                <div class="item py-2" style="width: 200px;">
-                    <div class="product font-lato">
-                        <a href="#"><img src="./assets//products/1.png" alt="product1" class="img-fluid"></a>
-                        <div class="text-center">
-                            <h6>Samsung Galaxy s23 Ultra</h6>
-                            <div class="rating text-warning font-size-12">
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="far fa-star"></i></span>
-                            </div>
-                            <div class="price py-2">
-                                <span>₹1,24,999.00</span>
-                            </div>
-                            <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item Phone border">
-                <div class="item py-2" style="width: 200px;">
-                    <div class="product font-lato">
-                        <a href="#"><img src="./assets//products/iphone14.png" alt="product1" class="img-fluid"></a>
-                        <div class="text-center">
-                            <h6>iPhone14 pro</h6>
-                            <div class="rating text-warning font-size-12">
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="far fa-star"></i></span>
-                            </div>
-                            <div class="price py-2">
-                                <span>₹1,19,999</span>
-                            </div>
-                            <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item DMS border">
-                <div class="item py-2" style="width: 200px;">
-                    <div class="product font-lato">
-                        <a href="#"><img src="./assets//products/webdev.jpg" alt="product1" class="img-fluid"></a>
-                        <div class="text-center">
-                            <h6>Premium Website Development Service</h6>
-                            <div class="rating text-warning font-size-12">
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="far fa-star"></i></span>
-                            </div>
-                            <div class="price py-2">
-                                <span>₹69000</span>
-                            </div>
-                            <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item DMS border">
-                <div class="item py-2" style="width: 200px;">
-                    <div class="product font-lato">
-                        <a href="#"><img src="./assets//products/appdev.jpg" alt="product1" class="img-fluid"></a>
-                        <div class="text-center">
-                            <h6>App Development Service </h6>
-                            <div class="rating text-warning font-size-12">
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="far fa-star"></i></span>
-                            </div>
-                            <div class="price py-2">
-                                <span>₹99999</span>
-                            </div>
-                            <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item  DMS border ">
-                <div class="item py-2" style="width: 200px;">
-                    <div class="product font-lato">
-                        <div class="d-flex flex-column">
-                            <a href="#"><img src="./assets//products/social.jpg" class="img-fluid" alt="pro1"></a>
+            <?php array_map(function ($item) use($in_cart){ ?>
+                <div class="grid-item border <?php echo $item['item_brand'] ?? "Brand" ; ?>">
+                    <div class="item py-2" style="width: 200px;">
+                        <div class="product font-rale">
+                            <a href="<?php printf('%s?item_id=%s', 'product.php',  $item['item_id']); ?>"><img src="<?php echo $item['item_image'] ?? "./assets/products/13.png"; ?>" alt="product1" class="img-fluid"></a>
                             <div class="text-center">
-                                <h6>Social Media Marketing</h6>
+                                <h6><?php echo $item['item_name'] ?? "Unknown"; ?></h6>
                                 <div class="rating text-warning font-size-12">
                                     <span><i class="fas fa-star"></i></span>
                                     <span><i class="fas fa-star"></i></span>
@@ -130,106 +44,24 @@
                                     <span><i class="far fa-star"></i></span>
                                 </div>
                                 <div class="price py-2">
-                                    <span>₹9999</span>
+                                    <span>₹<?php echo $item['item_price'] ?? 0 ?></span>
                                 </div>
-                                <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
+                                <form method="post">
+                                    <input type="hidden" name="item_id" value="<?php echo $item['item_id'] ?? '1'; ?>">
+                                    <input type="hidden" name="user_id" value="<?php echo 1; ?>">
+                                    <?php
+                                    if (in_array($item['item_id'], $in_cart ?? [])){
+                                        echo '<button type="submit" disabled class="btn btn-success font-size-12">In the Cart</button>';
+                                    }else{
+                                        echo '<button type="submit" name="top_sale_submit" class="btn btn-warning font-size-12">Add to Cart</button>';
+                                    }
+                                    ?>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="grid-item  Car border ">
-                <div class="item py-2" style="width: 480px;">
-                    <div class="product font-rale">
-                        <div class="d-flex flex-column">
-                            <a href="#"><img src="./assets//products/amg.png" class="img-fluid" alt="pro1"></a>
-                            <div class="text-center">
-                                <h6>Mercedes-Benz AMG GT</h6>
-                                <div class="rating text-warning font-size-12">
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="far fa-star"></i></span>
-                                </div>
-                                <div class="price py-2">
-                                    <span>₹2.71 cr</span>
-                                </div>
-                                <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item  Car border ">
-                <div class="item py-2" style="width: 480px;">
-                    <div class="product font-rale">
-                        <div class="d-flex flex-column">
-                            <a href="#"><img src="./assets//products/tesla.png" class="img-fluid" alt="pro1"></a>
-                            <div class="text-center">
-                                <h6>Tesla Model S</h6>
-                                <div class="rating text-warning font-size-12">
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="far fa-star"></i></span>
-                                </div>
-                                <div class="price py-2">
-                                    <span>₹70.00 Lakh</span>
-                                </div>
-                                <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item  Car border">
-                <div class="item py-2" style="width: 480px;">
-                    <div class="product font-rale">
-                        <div class="d-flex flex-column">
-                            <a href="#"><img src="./assets//products/bmw.png" class="img-fluid" alt="pro1"></a>
-                            <div class="text-center">
-                                <h6>BMW 7 Series</h6>
-                                <div class="rating text-warning font-size-12">
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="far fa-star"></i></span>
-                                </div>
-                                <div class="price py-2">
-                                    <span>₹1.72 cr</span>
-                                </div>
-                                <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item Car border  " >
-                <div class="item py-2" style="width: 480px;">
-                    <div class="product font-rale">
-                        <div class="d-flex flex-column">
-                            <a href="#"><img src="./assets//products/lambo.png" class="img-fluid" alt="pro1"></a>
-                            <div class="text-center">
-                                <h6>Lamborghini Urus</h6>
-                                <div class="rating text-warning font-size-12">
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="far fa-star"></i></span>
-                                </div>
-                                <div class="price py-2">
-                                    <span>₹3.12 cr</span>
-                                </div>
-                                <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php }, $product_shuffle) ?>
         </div>
     </div>
 </section>
