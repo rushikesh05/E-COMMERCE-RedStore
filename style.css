@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato&family=Raleway&family=Rubik&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Roboto&family=Rubik&display=swap");
 /* sass templete    */
 button, button:focus {
     outline: none !important;
@@ -9,8 +9,8 @@ button, button:focus {
     font-family: "Lato", cursive;
 }
 
-.font-rale {
-    font-family: "Raleway", cursive;
+.font-robo {
+    font-family: "Roboto Light", cursive;
 }
 
 .font-rubik {
@@ -60,9 +60,11 @@ button, button:focus {
 
 /*  top sale template   */
 #top-sale .owl-carousel .item .product a {
+
     overflow: hidden;
 }
 #top-sale .owl-carousel .item .product img {
+    object-fit: contain;
     transition: transform 0.5s ease;
 }
 #top-sale .owl-carousel .item .product img:hover {
